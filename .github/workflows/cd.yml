@@ -21,7 +21,7 @@ jobs:
         run: docker save file-storage-api:latest -o file-storage-api.tar
 
       - name: Upload Docker image artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: file-storage-api-image
           path: file-storage-api.tar
