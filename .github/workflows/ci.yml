@@ -37,3 +37,4 @@ jobs:
       - name: Run Locust load test (headless, 10 user, 5 loop)
         run: |
           locust -f load_tests/locustfile.py --host http://127.0.0.1:8000 --headless -u 10 -r 5 -t 30s
+          
