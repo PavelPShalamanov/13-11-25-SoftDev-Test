@@ -1,0 +1,30 @@
+name: Build Docker Image Artifact
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: docker build -t file-storage-api:latest .
+
+      - name: Save Docker image as tar
+        run: docker save file-storage-api:latest -o file-storage-api.tar
+
+      - name: Upload Docker image artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: file-storage-api-image
+          path: file-storage-api.tar
+
+
+
