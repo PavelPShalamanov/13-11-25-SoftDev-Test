@@ -2,13 +2,16 @@ import random
 import string
 from locust import HttpUser, task, between
 
+
 def random_filename(ext="txt", length=8):
     """Generate a random filename for uploads."""
     letters = string.ascii_lowercase
     return "".join(random.choice(letters) for _ in range(length)) + f".{ext}"
 
+
 class FileStorageUser(HttpUser):
-    wait_time = between(1, 3)  # Simulate a user waiting 1-3 seconds between tasks
+    wait_time = between(1, 3)
+    # Simulate a user waiting 1-3 seconds between tasks
 
     @task(2)
     def upload_file(self):
